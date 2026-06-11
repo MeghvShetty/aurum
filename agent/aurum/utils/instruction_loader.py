@@ -11,7 +11,7 @@ def load_instruction_from_file( filename : str, default_instuction: str = "You a
 """
     instruction = default_instuction 
     try:
-        filepath = os.path.join(os.path.dirname(__file__), filename)
+        filepath = os.path.join(os.path.dirname(os.path.dirname(__file__)), filename)
         with open(filepath, "r", encoding="utf-8") as f:
             insuction = f.read()
         print(f"Successfully loaded instruction from {filename}")
