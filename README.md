@@ -1,4 +1,4 @@
-# ARUM: _Latin for gold_
+# AURUM: _Latin for gold_
 
 # The Scenario
 AI-powered investment portfolio assistant for retail banking customers.
