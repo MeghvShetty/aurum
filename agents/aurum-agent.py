@@ -5,22 +5,13 @@ from utils.instruction_loader import load_instruction_from_file
 
 
 MODEL = "gemini-2.5-pro"
-# Lead Agent 
-lead_agent = LlmAgent(
-    name = "AURUM",
-    model= MODEL,
-    instruction= load_instruction_from_file("lead-instruction.txt"),
-    mode = 'chat',
-    tools = [AgentTool(porfolio_agent,advisory_agent), google_search]
 
-)
 
 # Sub Agent 1 : Porfolio RAG Agent
-porfolio_agent = LlmAgent(
-    name = "Porfolio Agent",
+portfolio_agent = LlmAgent(
+    name = "Portfolio Agent",
     model= MODEL,
-    instruction= load_instruction_from_file("lead-instruction.txt")
-    
+    instruction= load_instruction_from_file("portfolio-instruction.txt")
 
 )
 
@@ -30,5 +21,14 @@ advisory_agent = LlmAgent(
     model = MODEL,
     instruction= load_instruction_from_file("advisory-instruction.txt")
 ) 
+
+# Lead Agent 
+lead_agent = LlmAgent(
+    name = "AURUM",
+    model= MODEL,
+    instruction= load_instruction_from_file("lead-instruction.txt"),
+    tools = [AgentTool(portfolio_agent),AgentTool(advisory_agent), google_search]
+
+)
 
 root_agent = lead_agent 
