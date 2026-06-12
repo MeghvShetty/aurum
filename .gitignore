@@ -218,3 +218,4 @@ __marimo__/
 .streamlit/secrets.toml
 .env 
 .adk/session.db
+agent/aurum/.adk/session.db
