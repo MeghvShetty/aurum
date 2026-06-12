@@ -1,3 +1,10 @@
-PANW_AI_SEC_API_KEY=your_key_here
-AIRS_PROFILE_NAME=your_profile_name
-AIRS_ENABLED=true
+#Google Cloud 
+GOOGLE_CLOUD_PROJECT=your-gcp-project-id
+GOOGLE_CLOUD_LOCATION=europe-west2
+GOOGLE_GENAI_USE_VERTEXAI=true
+
+#Prisma AIRS 
+AIRS_ENABLED=  true
+PANW_AI_SEC_API_KEY= 
+AIRS_PROFILE_NAME= "Default"
+AIRS_API_ENDPOINT ="https://service-de.api.aisecurity.paloaltonetworks.com"
