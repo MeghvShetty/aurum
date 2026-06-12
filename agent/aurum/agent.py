@@ -2,7 +2,7 @@ from google.adk.agents import LlmAgent
 from google.adk.tools import google_search
 from google.adk.tools.agent_tool import AgentTool
 from aurum.utils.instruction_loader import load_instruction_from_file 
-from aurum.utils.airs_callbacks import before_model_callback
+from aurum.utils.airs_callbacks import before_model_callback, after_model_callback
 
 MODEL = "gemini-2.5-pro"
 
@@ -32,7 +32,8 @@ lead_agent = LlmAgent(
         AgentTool(portfolio_agent),
         AgentTool(advisory_agent),
         ],
-    before_model_callback=before_model_callback
+    before_model_callback=before_model_callback,
+    after_model_callback=after_model_callback
 
 )
 
