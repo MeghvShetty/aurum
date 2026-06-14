@@ -1,0 +1,10 @@
+#Google Cloud 
+GOOGLE_CLOUD_PROJECT=your-gcp-project-id
+GOOGLE_CLOUD_LOCATION=europe-west2
+GOOGLE_GENAI_USE_VERTEXAI=true
+
+#Prisma AIRS 
+AIRS_ENABLED=  true
+PANW_AI_SEC_API_KEY= 
+AIRS_PROFILE_NAME= "Default"
+AIRS_API_ENDPOINT ="https://service-de.api.aisecurity.paloaltonetworks.com"
