@@ -14,9 +14,36 @@ load_dotenv()
 
 AIRS_ENABLED = os.getenv("AIRS_ENABLED", "true").lower() == "true"
 
+# TRUST Proxy root CA 
+def _install_custom_ca():
+    ca_path = os.getenv("AIRS_CA_BUNDLE")
+    if not ca_path:
+        return
+    if not os.path.exists(ca_path):
+        logger.warning(f"AIRS_CA_BUNDLE set but not found;{ca_path}")
+        return 
+    import certifi
+    import aiohttp
+    import ssl
+
+    # build 
+    ssl_ctx = ssl.create_default_context(cafile=certifi.where())
+    ssl_ctx.load_verify_locations(cafile=ca_path)
+
+    _orig_init = aiohttp.ClientSession.__init__ 
+
+    def _patched_init(self, *args, **kwargs):
+        kwargs.setdefault("trust_env", True)
+        if not kwargs.get("connector"):
+            kwargs["connector"] = aiohttp.TCPConnector(ssl=ssl_ctx)
+        _orig_init(self, *args, **kwargs)
+
+    aiohttp.ClientSession.__init__ = _patched_init
+    logger.info(f"AIRS custom CA installed from {ca_path}")
 
 if AIRS_ENABLED:
     try:
+        _install_custom_ca()
         import aisecurity
         from aisecurity.scan.inline.scanner import Scanner
         from aisecurity.scan.models.content import Content
