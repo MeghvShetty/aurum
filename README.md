@@ -18,6 +18,8 @@ One environment variable controls everything:
 ```.env
 AIRS_ENABLED=true   # callbacks active
 AIRS_ENABLED=false  # callbacks removed — direct to LLM
+SSL_CERT_FILE= # custom ca_bundle
+AIRS_CA_BUNDLE= # rootCA
 ```
 
 
